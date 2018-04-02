@@ -2,6 +2,7 @@ package br.com.game.of.thrones.model;
 
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +35,12 @@ public class Account {
     @Size(min = 3, message = "Name must be have atleast 3 characteres")
     private String name;
     private LocalDateTime createdDate;
+
+    private BigDecimal balance;
+    private AccountStatus status;
     @OneToMany
     private List<AffilliateAccount> affilliateAccounts;
+
+
 
 }
