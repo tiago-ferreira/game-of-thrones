@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AffilliateAccountServiceImpl implements AffilliateAccountService{
+public class AffilliateAccountServiceImpl implements AffilliateAccountService {
 
     @Autowired
     private AffilliateAccountRepository affilliateAccountRepository;

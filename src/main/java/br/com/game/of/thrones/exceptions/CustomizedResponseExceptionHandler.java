@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 @RestController
-public class CustomizedResponseExceptionHandler extends ResponseEntityExceptionHandler{
+public class CustomizedResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest webRequest) {
