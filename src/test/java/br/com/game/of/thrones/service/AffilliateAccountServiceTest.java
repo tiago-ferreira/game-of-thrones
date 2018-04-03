@@ -74,9 +74,6 @@ public class AffilliateAccountServiceTest {
         affilliateAccountService.delete(affilliateAccounts.get(0));
         affilliateAccounts = affilliateAccountService.findAll();
         Assertions.assertTrue(affilliateAccounts.size() < initialSize);
-
     }
-
-
 
 }

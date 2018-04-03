@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -22,7 +23,8 @@ public class LegalPerson extends Person {
     @NotNull(message = "CNPJ cannot be Null")
     @NotEmpty(message = "CNPJ cannot be Empty")
     @Size(min = 14, max = 14, message = "CNPJ must be have 14 numbers")
-    private Long cnpj;
+    @CNPJ(message = "CNPJ is invalid")
+    private String cnpj;
     @NotNull(message = "SocialReason cannot be Null")
     @NotBlank(message = "SocialReason cannot be only whitespace")
     @NotEmpty(message = "SocialReason cannot be Null or Empty")
