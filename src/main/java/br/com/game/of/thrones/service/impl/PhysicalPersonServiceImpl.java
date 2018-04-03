@@ -16,8 +16,8 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
     private PhysicalPersonRepository physicalPersonRepository;
 
     @Override
-    public void create(PhysicalPerson physicalPerson) {
-        physicalPersonRepository.save(physicalPerson);
+    public PhysicalPerson create(PhysicalPerson physicalPerson) {
+        return physicalPersonRepository.save(physicalPerson);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class PhysicalPersonServiceImpl implements PhysicalPersonService {
     }
 
     @Override
-    public void update(PhysicalPerson physicalPerson) {
-        physicalPersonRepository.save(physicalPerson);
+    public PhysicalPerson update(PhysicalPerson physicalPerson) {
+        return physicalPersonRepository.save(physicalPerson);
     }
 
     @Override

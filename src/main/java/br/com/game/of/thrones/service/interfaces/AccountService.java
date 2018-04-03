@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface AccountService {
 
-    void create(Account account);
+    Account create(Account account);
 
     Optional<Account> read(Long id);
 
-    void update(Account account);
+    Account update(Account account);
 
     void delete(Account account);
 

@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LegalPersonService {
-    void create(LegalPerson legalPerson);
+    LegalPerson create(LegalPerson legalPerson);
 
     Optional<LegalPerson> read(Long id);
 
-    void update(LegalPerson legalPerson);
+    LegalPerson update(LegalPerson legalPerson);
 
     void delete(LegalPerson legalPerson);
 

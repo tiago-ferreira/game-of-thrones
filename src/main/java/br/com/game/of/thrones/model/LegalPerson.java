@@ -15,7 +15,6 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class LegalPerson extends Person {

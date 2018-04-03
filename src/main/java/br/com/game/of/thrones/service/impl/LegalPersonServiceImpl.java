@@ -16,8 +16,8 @@ public class LegalPersonServiceImpl implements LegalPersonService {
     private LegalPersonRepository legalPersonRepository;
 
     @Override
-    public void create(LegalPerson legalPerson) {
-        legalPersonRepository.save(legalPerson);
+    public LegalPerson create(LegalPerson legalPerson) {
+        return legalPersonRepository.save(legalPerson);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class LegalPersonServiceImpl implements LegalPersonService {
     }
 
     @Override
-    public void update(LegalPerson legalPerson) {
-        legalPersonRepository.save(legalPerson);
+    public LegalPerson update(LegalPerson legalPerson) {
+        return legalPersonRepository.save(legalPerson);
     }
 
     @Override

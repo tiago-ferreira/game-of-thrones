@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PhysicalPersonService {
-    void create(PhysicalPerson physicalPerson);
+    PhysicalPerson create(PhysicalPerson physicalPerson);
 
     Optional<PhysicalPerson> read(Long id);
 
-    void update(PhysicalPerson physicalPerson);
+    PhysicalPerson update(PhysicalPerson physicalPerson);
 
     void delete(PhysicalPerson physicalPerson);
 

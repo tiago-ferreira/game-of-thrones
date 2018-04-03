@@ -7,5 +7,4 @@ public interface TransferService {
     void deposit(Transfer transfer);
     void reversal(Transfer transfer);
 
-
 }

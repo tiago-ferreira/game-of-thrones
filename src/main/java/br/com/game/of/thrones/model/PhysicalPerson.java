@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class PhysicalPerson extends Person {

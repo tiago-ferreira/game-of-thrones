@@ -18,9 +18,9 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public void create(Account account) {
+    public Account create(Account account) {
         account.setCreatedDate(LocalDateTime.now());
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     @Override
@@ -29,8 +29,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void update(Account account) {
-        accountRepository.save(account);
+    public Account update(Account account) {
+        return accountRepository.save(account);
     }
 
     @Override

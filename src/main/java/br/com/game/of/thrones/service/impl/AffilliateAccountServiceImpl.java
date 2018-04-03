@@ -18,9 +18,9 @@ public class AffilliateAccountServiceImpl implements AffilliateAccountService {
 
 
     @Override
-    public void create(AffilliateAccount affilliateAccount) {
+    public AffilliateAccount create(AffilliateAccount affilliateAccount) {
         affilliateAccount.setCreatedDate(LocalDateTime.now());
-        affilliateAccountRepository.save(affilliateAccount);
+        return affilliateAccountRepository.save(affilliateAccount);
     }
 
     @Override
@@ -29,8 +29,8 @@ public class AffilliateAccountServiceImpl implements AffilliateAccountService {
     }
 
     @Override
-    public void update(AffilliateAccount affilliateAccount) {
-        affilliateAccountRepository.save(affilliateAccount);
+    public AffilliateAccount update(AffilliateAccount affilliateAccount) {
+        return affilliateAccountRepository.save(affilliateAccount);
     }
 
     @Override

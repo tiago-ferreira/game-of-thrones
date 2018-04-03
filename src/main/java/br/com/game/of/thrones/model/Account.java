@@ -18,7 +18,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @EqualsAndHashCode(exclude = "affilliateAccounts")
 @ToString(exclude = "affilliateAccounts")
@@ -36,7 +35,8 @@ public class Account {
 
     private BigDecimal balance;
     private AccountStatus status;
-    @OneToMany
+
+    @OneToMany()
     private List<AffilliateAccount> affilliateAccounts;
 
 

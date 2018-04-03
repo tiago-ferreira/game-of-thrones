@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,7 +16,6 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 public class Transfer {
 
@@ -23,8 +23,10 @@ public class Transfer {
     @GeneratedValue
     private Long id;
     @NotNull
+    @ManyToOne
     private AffilliateAccount origin;
     @NotNull
+    @ManyToOne
     private AffilliateAccount destiny;
     @NotNull
     private BigDecimal value;

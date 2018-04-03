@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface AffilliateAccountService {
 
-    void create(AffilliateAccount affilliateAccount);
+    AffilliateAccount create(AffilliateAccount affilliateAccount);
 
     Optional<AffilliateAccount> read(Long id);
 
-    void update(AffilliateAccount affilliateAccount);
+    AffilliateAccount update(AffilliateAccount affilliateAccount);
 
     void delete(AffilliateAccount affilliateAccount);
 
