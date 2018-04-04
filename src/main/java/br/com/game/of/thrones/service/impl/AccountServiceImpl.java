@@ -1,6 +1,7 @@
 package br.com.game.of.thrones.service.impl;
 
 import br.com.game.of.thrones.model.Account;
+import br.com.game.of.thrones.model.AccountStatus;
 import br.com.game.of.thrones.repository.AccountRepository;
 import br.com.game.of.thrones.service.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account create(Account account) {
         account.setCreatedDate(LocalDateTime.now());
+        account.setStatus(AccountStatus.ACTIVE);
         return accountRepository.save(account);
     }
 

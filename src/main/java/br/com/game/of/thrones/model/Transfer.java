@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,14 +19,18 @@ public class Transfer {
     @Id
     @GeneratedValue
     private Long id;
-    @NotNull
+    @NotNull(message = "The Origin account cannot be null")
     @ManyToOne
     private AffilliateAccount origin;
-    @NotNull
+    @NotNull(message = "The Destiny account cannot be null")
     @ManyToOne
     private AffilliateAccount destiny;
-    @NotNull
+    @NotNull(message = "Value cannot be null")
     private BigDecimal value;
-    @NotNull
+    @NotNull(message = "TransferDate cannot be null")
     private LocalDateTime transferDate;
+    @NotNull(message = "TransactionType cannot be null")
+    private TransactionType transactionType;
+    @ManyToOne
+    private Transfer transferReference;
 }
