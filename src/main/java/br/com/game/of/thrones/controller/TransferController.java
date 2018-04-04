@@ -22,7 +22,7 @@ public class TransferController {
     }
 
     @GetMapping("/reversal/{id}")
-    public void reversal(@PathVariable("id") Long id){
+    public void reversal(@PathVariable("id") Long id) {
         transferService.reversal(id);
     }
 

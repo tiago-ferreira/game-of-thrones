@@ -1,8 +1,8 @@
 package br.com.game.of.thrones.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -11,10 +11,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@EqualsAndHashCode(callSuper = true)
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class PhysicalPerson extends Person {
 

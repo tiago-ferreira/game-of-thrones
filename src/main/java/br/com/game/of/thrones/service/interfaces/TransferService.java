@@ -7,8 +7,11 @@ import java.util.List;
 public interface TransferService {
 
     void deposit(Transfer transfer);
+
     void reversal(Long idTransfer);
+
     Transfer read(Long id);
+
     List<Transfer> findAll();
 
 }

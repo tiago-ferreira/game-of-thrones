@@ -1,6 +1,5 @@
 package br.com.game.of.thrones.service.impl;
 
-import br.com.game.of.thrones.exceptions.ResourceNotFoundException;
 import br.com.game.of.thrones.model.Account;
 import br.com.game.of.thrones.model.AccountStatus;
 import br.com.game.of.thrones.model.AffilliateAccount;
@@ -26,7 +25,7 @@ public class AffilliateAccountServiceImpl implements AffilliateAccountService {
     @Override
     public AffilliateAccount create(AffilliateAccount affilliateAccount) {
         Optional<Account> account = accountRepository.findById(affilliateAccount.getAccount().getId());
-        if(!account.isPresent()) {
+        if (!account.isPresent()) {
             throw new RuntimeException("The Parent account does not exist");
         }
         affilliateAccount.setAccount(account.get());
