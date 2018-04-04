@@ -9,11 +9,11 @@ public interface AffilliateAccountService {
 
     AffilliateAccount create(AffilliateAccount affilliateAccount);
 
-    Optional<AffilliateAccount> read(Long id);
+    AffilliateAccount read(Long id);
 
     AffilliateAccount update(AffilliateAccount affilliateAccount);
 
-    void delete(AffilliateAccount affilliateAccount);
+    void delete(Long id);
 
     List<AffilliateAccount> findAll();
 }

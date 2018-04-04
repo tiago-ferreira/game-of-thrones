@@ -24,7 +24,7 @@ public class AccountController {
 
     @GetMapping(value = "/{id}")
     public Account read(@PathVariable("id") Long id) {
-        return accountService.read(id).orElseThrow(() -> new ResourceNotFoundException("Account", "id", id));
+        return accountService.read(id);
     }
 
     @PutMapping
@@ -34,8 +34,7 @@ public class AccountController {
 
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") Long id) {
-        Account account = accountService.read(id).orElseThrow(() -> new ResourceNotFoundException("Account", "id", id));
-        accountService.delete(account);
+        accountService.delete(id);
     }
 
     @GetMapping

@@ -28,7 +28,7 @@ public class LegalPersonServiceTest {
         legalPerson.setFantasyName("Mio di Bao");
         legalPerson.setSocialReason("Mineiro e o mundo");
         legalPerson = legalPersonService.create(legalPerson);
-        LegalPerson readLegalPerson = legalPersonService.read(legalPerson.getId()).get();
+        LegalPerson readLegalPerson = legalPersonService.read(legalPerson.getId());
         Assertions.assertEquals(readLegalPerson.getCnpj(), legalPerson.getCnpj());
     }
 
@@ -46,7 +46,7 @@ public class LegalPersonServiceTest {
     public void deleteTest() {
         List<LegalPerson> legalPeople = legalPersonService.findAll();
         Integer initialSize = legalPeople.size();
-        legalPersonService.delete(legalPeople.get(0));
+        legalPersonService.delete(legalPeople.get(0).getId());
         legalPeople = legalPersonService.findAll();
         Assertions.assertTrue(legalPeople.size() < initialSize);
     }

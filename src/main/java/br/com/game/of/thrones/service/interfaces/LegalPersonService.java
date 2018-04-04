@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface LegalPersonService {
     LegalPerson create(LegalPerson legalPerson);
 
-    Optional<LegalPerson> read(Long id);
+    LegalPerson read(Long id);
 
     LegalPerson update(LegalPerson legalPerson);
 
-    void delete(LegalPerson legalPerson);
+    void delete(Long id);
 
     List<LegalPerson> findAll();
 }

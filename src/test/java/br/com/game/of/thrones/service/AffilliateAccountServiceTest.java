@@ -49,7 +49,7 @@ public class AffilliateAccountServiceTest {
         affilliateAccount.setStatus(AccountStatus.ACTIVE);
         affilliateAccount.setAccount(account);
         affilliateAccount = affilliateAccountService.create(affilliateAccount);
-        AffilliateAccount readAffilliateAccount = affilliateAccountService.read(affilliateAccount.getId()).get();
+        AffilliateAccount readAffilliateAccount = affilliateAccountService.read(affilliateAccount.getId());
         Assertions.assertNotNull(readAffilliateAccount.getCreatedDate());
         Assertions.assertEquals(readAffilliateAccount.getName(), affilliateAccount.getName());
     }
@@ -71,7 +71,7 @@ public class AffilliateAccountServiceTest {
         List<AffilliateAccount> affilliateAccounts = affilliateAccountService.findAll();
         Integer initialSize = affilliateAccounts.size();
         Assertions.assertNotNull(affilliateAccounts);
-        affilliateAccountService.delete(affilliateAccounts.get(0));
+        affilliateAccountService.delete(affilliateAccounts.get(0).getId());
         affilliateAccounts = affilliateAccountService.findAll();
         Assertions.assertTrue(affilliateAccounts.size() < initialSize);
     }

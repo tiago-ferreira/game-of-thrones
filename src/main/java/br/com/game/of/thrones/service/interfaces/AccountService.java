@@ -9,11 +9,11 @@ public interface AccountService {
 
     Account create(Account account);
 
-    Optional<Account> read(Long id);
+    Account read(Long id);
 
     Account update(Account account);
 
-    void delete(Account account);
+    void delete(Long id);
 
     List<Account> findAll();
 }

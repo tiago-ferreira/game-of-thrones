@@ -1,5 +1,6 @@
 package br.com.game.of.thrones.service.impl;
 
+import br.com.game.of.thrones.exceptions.ResourceNotFoundException;
 import br.com.game.of.thrones.model.Account;
 import br.com.game.of.thrones.model.AccountStatus;
 import br.com.game.of.thrones.repository.AccountRepository;
@@ -26,8 +27,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Optional<Account> read(Long id) {
-        return accountRepository.findById(id);
+    public Account read(Long id) {
+        return accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account", "id", id));
     }
 
     @Override
@@ -36,7 +37,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void delete(Account account) {
+    public void delete(Long id) {
+        Account account = read(id);
         accountRepository.delete(account);
     }
 

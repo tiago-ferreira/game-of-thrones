@@ -28,7 +28,7 @@ public class AccountServiceTest {
         account.setBalance(new BigDecimal(0));
         account.setStatus(AccountStatus.ACTIVE);
         account = accountService.create(account);
-        Account readAccount = accountService.read(account.getId()).get();
+        Account readAccount = accountService.read(account.getId());
         Assertions.assertEquals(readAccount.getName(), account.getName());
         Assertions.assertNotNull(readAccount.getCreatedDate());
 
@@ -48,7 +48,7 @@ public class AccountServiceTest {
         List<Account> accounts = accountService.findAll();
         Assertions.assertNotNull(accounts);
         Integer initialSize = accounts.size();
-        accountService.delete(accounts.get(0));
+        accountService.delete(accounts.get(0).getId());
         accounts = accountService.findAll();
         Assertions.assertTrue(accounts.size() < initialSize);
     }

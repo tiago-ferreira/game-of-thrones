@@ -25,7 +25,7 @@ public class LegalPersonController {
 
     @GetMapping(value = "/{id}")
     public LegalPerson read(@PathVariable("id") Long id) {
-        return legalPersonService.read(id).orElseThrow(() -> new ResourceNotFoundException("LegalPerson", "id", id));
+        return legalPersonService.read(id);
     }
 
     @PutMapping
@@ -35,8 +35,7 @@ public class LegalPersonController {
 
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") Long id) {
-        LegalPerson legalPerson = legalPersonService.read(id).orElseThrow(() -> new ResourceNotFoundException("LegalPerson", "id", id));
-        legalPersonService.delete(legalPerson);
+        legalPersonService.delete(id);
     }
 
     @GetMapping

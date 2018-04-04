@@ -1,5 +1,6 @@
 package br.com.game.of.thrones.service.impl;
 
+import br.com.game.of.thrones.exceptions.ResourceNotFoundException;
 import br.com.game.of.thrones.model.LegalPerson;
 import br.com.game.of.thrones.repository.LegalPersonRepository;
 import br.com.game.of.thrones.service.interfaces.LegalPersonService;
@@ -21,8 +22,8 @@ public class LegalPersonServiceImpl implements LegalPersonService {
     }
 
     @Override
-    public Optional<LegalPerson> read(Long id) {
-        return legalPersonRepository.findById(id);
+    public LegalPerson read(Long id) {
+        return legalPersonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("LegalPerson", "id", id));
     }
 
     @Override
@@ -31,7 +32,8 @@ public class LegalPersonServiceImpl implements LegalPersonService {
     }
 
     @Override
-    public void delete(LegalPerson legalPerson) {
+    public void delete(Long id) {
+        LegalPerson legalPerson = read(id);
         legalPersonRepository.delete(legalPerson);
     }
 

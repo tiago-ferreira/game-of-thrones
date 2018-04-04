@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface PhysicalPersonService {
     PhysicalPerson create(PhysicalPerson physicalPerson);
 
-    Optional<PhysicalPerson> read(Long id);
+    PhysicalPerson read(Long id);
 
     PhysicalPerson update(PhysicalPerson physicalPerson);
 
-    void delete(PhysicalPerson physicalPerson);
+    void delete(Long id);
 
     List<PhysicalPerson> findAll();
 }

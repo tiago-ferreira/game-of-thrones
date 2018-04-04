@@ -1,5 +1,6 @@
 package br.com.game.of.thrones.service.impl;
 
+import br.com.game.of.thrones.exceptions.ResourceNotFoundException;
 import br.com.game.of.thrones.model.Account;
 import br.com.game.of.thrones.model.AccountStatus;
 import br.com.game.of.thrones.model.AffilliateAccount;
@@ -35,8 +36,8 @@ public class AffilliateAccountServiceImpl implements AffilliateAccountService {
     }
 
     @Override
-    public Optional<AffilliateAccount> read(Long id) {
-        return affilliateAccountRepository.findById(id);
+    public AffilliateAccount read(Long id) {
+        return affilliateAccountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("AffilliateAccount", "id", id));
     }
 
     @Override
@@ -45,7 +46,8 @@ public class AffilliateAccountServiceImpl implements AffilliateAccountService {
     }
 
     @Override
-    public void delete(AffilliateAccount affilliateAccount) {
+    public void delete(Long id) {
+        AffilliateAccount affilliateAccount = read(id);
         affilliateAccountRepository.delete(affilliateAccount);
     }
 

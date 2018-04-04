@@ -25,7 +25,7 @@ public class AffilliateAccountController {
 
     @GetMapping(value = "/{id}")
     public AffilliateAccount read(@PathVariable("id") Long id) {
-        return affilliateAccountService.read(id).orElseThrow(() -> new ResourceNotFoundException("AffilliateAccount", "id", id));
+        return affilliateAccountService.read(id);
     }
 
     @PutMapping
@@ -35,8 +35,7 @@ public class AffilliateAccountController {
 
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") Long id) {
-        AffilliateAccount account = affilliateAccountService.read(id).orElseThrow(() -> new ResourceNotFoundException("AffilliateAccount", "id", id));
-        affilliateAccountService.delete(account);
+        affilliateAccountService.delete(id);
     }
 
     @GetMapping

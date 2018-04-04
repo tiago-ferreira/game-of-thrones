@@ -29,7 +29,7 @@ public class PhysicalPersonServiceTest {
         physicalPerson.setBirthdate(LocalDate.now().minusYears(50));
         physicalPerson = physicalPersonService.create(physicalPerson);
         Assertions.assertNotNull(physicalPerson.getId());
-        PhysicalPerson readPhysicalPerson = physicalPersonService.read(physicalPerson.getId()).get();
+        PhysicalPerson readPhysicalPerson = physicalPersonService.read(physicalPerson.getId());
         Assertions.assertEquals(physicalPerson.getFullName(), readPhysicalPerson.getFullName());
         Assertions.assertEquals(physicalPerson.getBirthdate(), readPhysicalPerson.getBirthdate());
     }
@@ -48,7 +48,7 @@ public class PhysicalPersonServiceTest {
     public void deleteTest() {
         List<PhysicalPerson> physicalPeople = physicalPersonService.findAll();
         Integer initialSize = physicalPeople.size();
-        physicalPersonService.delete(physicalPeople.get(0));
+        physicalPersonService.delete(physicalPeople.get(0).getId());
         physicalPeople = physicalPersonService.findAll();
         Assertions.assertTrue(physicalPeople.size() < initialSize);
     }

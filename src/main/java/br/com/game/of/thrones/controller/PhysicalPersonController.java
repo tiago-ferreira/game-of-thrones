@@ -24,7 +24,7 @@ public class PhysicalPersonController {
 
     @GetMapping(value = "/{id}")
     public PhysicalPerson read(@PathVariable("id") Long id) {
-        return physicalPersonService.read(id).orElseThrow(() -> new ResourceNotFoundException("PhysicalPerson", "id", id));
+        return physicalPersonService.read(id);
     }
 
     @PutMapping
@@ -34,8 +34,7 @@ public class PhysicalPersonController {
 
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") Long id) {
-        PhysicalPerson physicalPerson = physicalPersonService.read(id).orElseThrow(() -> new ResourceNotFoundException("PhysicalPerson", "id", id));
-        physicalPersonService.delete(physicalPerson);
+        physicalPersonService.delete(id);
     }
 
     @GetMapping
