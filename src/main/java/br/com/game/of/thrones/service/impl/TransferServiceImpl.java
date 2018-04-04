@@ -7,6 +7,7 @@ import br.com.game.of.thrones.model.Transfer;
 import br.com.game.of.thrones.repository.AffilliateAccountRepository;
 import br.com.game.of.thrones.repository.TransferRepository;
 import br.com.game.of.thrones.service.interfaces.TransferService;
+import br.com.game.of.thrones.util.Calc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,9 @@ public class TransferServiceImpl implements TransferService {
     @Autowired
     private AffilliateAccountRepository affilliateAccountRepository;
 
+    @Autowired
+    private Calc calc;
+
 
     @Override
     public void deposit(Transfer transfer) {
@@ -31,8 +35,8 @@ public class TransferServiceImpl implements TransferService {
         AffilliateAccount destiny = validAndReturnDestinyAccount(transfer);
         transfer.setTransferDate(LocalDateTime.now());
         transfer.setTransactionType(TransactionType.DEPOSIT);
-        origin.setBalance(subtract(origin.getBalance(), transfer.getValue()));
-        destiny.setBalance(sum(destiny.getBalance(), transfer.getValue()));
+        origin.setBalance(calc.subtract(origin.getBalance(), transfer.getValue()));
+        destiny.setBalance(calc.sum(destiny.getBalance(), transfer.getValue()));
         affilliateAccountRepository.save(origin);
         affilliateAccountRepository.save(destiny);
         transferRepository.save(transfer);
@@ -47,8 +51,8 @@ public class TransferServiceImpl implements TransferService {
         BigDecimal value = transfer.get().getValue();
         AffilliateAccount origin = transfer.get().getOrigin();
         AffilliateAccount destiny = transfer.get().getDestiny();
-        origin.setBalance(sum(origin.getBalance(), value));
-        destiny.setBalance(subtract(destiny.getBalance(), value));
+        origin.setBalance(calc.sum(origin.getBalance(), value));
+        destiny.setBalance(calc.subtract(destiny.getBalance(), value));
         affilliateAccountRepository.save(origin);
         affilliateAccountRepository.save(destiny);
         Transfer newTransfer = new Transfer(null, origin, destiny, value, LocalDateTime.now(), TransactionType.REVERSAL, transfer.get());
@@ -63,15 +67,6 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public List<Transfer> findAll() {
         return transferRepository.findAll();
-    }
-
-
-    private BigDecimal subtract(BigDecimal valueOne, BigDecimal valueTwo) {
-        return valueOne.subtract(valueTwo);
-    }
-
-    private BigDecimal sum(BigDecimal valueOne, BigDecimal valueTwo) {
-        return valueOne.add(valueTwo);
     }
 
     private AffilliateAccount validAndReturnOriginAccount(Transfer transfer) {

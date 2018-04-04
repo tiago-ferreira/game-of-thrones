@@ -8,6 +8,7 @@ import br.com.game.of.thrones.repository.AccountInputRepository;
 import br.com.game.of.thrones.repository.AccountRepository;
 import br.com.game.of.thrones.service.interfaces.AccountInputService;
 import br.com.game.of.thrones.service.interfaces.AccountService;
+import br.com.game.of.thrones.util.Calc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class AccountInputServiceImpl implements AccountInputService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private Calc calc;
+
     @Override
     public void deposit(AccountInput accountInput) {
         Optional<Account> optionalAccount = accountRepository.findById(accountInput.getAccount().getId());
@@ -32,7 +36,7 @@ public class AccountInputServiceImpl implements AccountInputService {
             throw new ResourceNotFoundException("Account","id",accountInput.getAccount().getId());
         }
         Account account = optionalAccount.get();
-        account.setBalance(sum(account.getBalance(), accountInput.getValue()));
+        account.setBalance(calc.sum(account.getBalance(), accountInput.getValue()));
         accountInput.setAccount(account);
         accountInput.setCreatedDate(LocalDateTime.now());
         accountInput.setTransactionType(TransactionType.DEPOSIT);
@@ -48,7 +52,7 @@ public class AccountInputServiceImpl implements AccountInputService {
             throw new ResourceNotFoundException("Account","id",accountInput.getAccount().getId());
         }
         Account account = optionalAccount.get();
-        account.setBalance(subtract(account.getBalance(), accountInput.getValue()));
+        account.setBalance(calc.subtract(account.getBalance(), accountInput.getValue()));
         accountRepository.save(account);
         AccountInput newAccountInput = new AccountInput(null, account, accountInput.getCode(), LocalDateTime.now(), accountInput.getValue(), TransactionType.REVERSAL, accountInput);
         accountInputRepository.save(newAccountInput);
@@ -64,11 +68,4 @@ public class AccountInputServiceImpl implements AccountInputService {
         return accountInputRepository.findAll();
     }
 
-    private BigDecimal sum(BigDecimal valueOne, BigDecimal valueTwo){
-        return valueOne.add(valueTwo);
-    }
-
-    private BigDecimal subtract(BigDecimal valueOne, BigDecimal valueTwo) {
-        return valueOne.subtract(valueTwo);
-    }
 }
