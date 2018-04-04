@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -17,11 +18,13 @@ public class AccountInputController {
 
     @PostMapping("/deposit")
     @ResponseStatus(HttpStatus.CREATED)
+    @Transactional
     public void deposit(@RequestBody AccountInput transfer) {
         accountInputService.deposit(transfer);
     }
 
     @GetMapping("/reversal/{id}")
+    @Transactional
     public void reversal(@PathVariable("id") Long id) {
         accountInputService.reversal(id);
     }

@@ -29,8 +29,6 @@ public class AffilliateAccountServiceTest {
     @Autowired
     private AffilliateAccountService affilliateAccountService;
 
-    private static Long idControl = 2L;
-
     private Account createAccount() {
         Account account = new Account();
         account.setName("Account 01");
@@ -71,7 +69,7 @@ public class AffilliateAccountServiceTest {
         List<AffilliateAccount> affilliateAccounts = affilliateAccountService.findAll();
         Integer initialSize = affilliateAccounts.size();
         Assertions.assertNotNull(affilliateAccounts);
-        affilliateAccountService.delete(affilliateAccounts.get(0).getId());
+        affilliateAccountService.delete(affilliateAccounts.get(initialSize - 1).getId());
         affilliateAccounts = affilliateAccountService.findAll();
         Assertions.assertTrue(affilliateAccounts.size() < initialSize);
     }
