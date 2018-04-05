@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface AccountInputService {
 
-    void deposit(AccountInput accountInput);
+    AccountInput deposit(AccountInput accountInput);
 
-    void reversal(Long idAccountInput);
+    AccountInput reversal(Long idAccountInput);
 
     AccountInput read(Long id);
 

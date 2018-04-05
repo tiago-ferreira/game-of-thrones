@@ -30,24 +30,24 @@ public class AccountInputServiceImpl implements AccountInputService {
     private Calc calc;
 
     @Override
-    public void deposit(AccountInput accountInput) {
+    public AccountInput deposit(AccountInput accountInput) {
         Account account = accountService.read(accountInput.getAccount().getId());
         account.setBalance(calc.sum(account.getBalance(), accountInput.getValue()));
         accountInput.setAccount(account);
         accountInput.setCreatedDate(LocalDateTime.now());
         accountInput.setTransactionType(TransactionType.DEPOSIT);
         accountService.update(account);
-        accountInputRepository.save(accountInput);
+        return accountInputRepository.save(accountInput);
     }
 
     @Override
-    public void reversal(Long idAccountInput) {
+    public AccountInput reversal(Long idAccountInput) {
         AccountInput accountInput = read(idAccountInput);
         Account account = accountService.read(accountInput.getAccount().getId());
         account.setBalance(calc.subtract(account.getBalance(), accountInput.getValue()));
         accountService.update(account);
         AccountInput newAccountInput = new AccountInput(null, account, accountInput.getCode(), LocalDateTime.now(), accountInput.getValue(), TransactionType.REVERSAL, accountInput);
-        accountInputRepository.save(newAccountInput);
+        return accountInputRepository.save(newAccountInput);
     }
 
     @Override

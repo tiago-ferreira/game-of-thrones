@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface TransferService {
 
-    void deposit(Transfer transfer);
+    Transfer deposit(Transfer transfer);
 
-    void reversal(Long idTransfer);
+    Transfer reversal(Long idTransfer);
 
     Transfer read(Long id);
 

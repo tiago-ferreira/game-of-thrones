@@ -30,7 +30,7 @@ public class TransferServiceImpl implements TransferService {
 
 
     @Override
-    public void deposit(Transfer transfer) {
+    public Transfer deposit(Transfer transfer) {
         AffilliateAccount origin = validAndReturnOriginAccount(transfer);
         AffilliateAccount destiny = validAndReturnDestinyAccount(transfer);
         transfer.setTransferDate(LocalDateTime.now());
@@ -39,11 +39,11 @@ public class TransferServiceImpl implements TransferService {
         destiny.setBalance(calc.sum(destiny.getBalance(), transfer.getValue()));
         affilliateAccountRepository.save(origin);
         affilliateAccountRepository.save(destiny);
-        transferRepository.save(transfer);
+        return transferRepository.save(transfer);
     }
 
     @Override
-    public void reversal(Long idTransfer) {
+    public Transfer reversal(Long idTransfer) {
         Optional<Transfer> transfer = transferRepository.findById(idTransfer);
         if (!transfer.isPresent()) {
             throw new ResourceNotFoundException("Transfer", "id", idTransfer);
@@ -56,7 +56,7 @@ public class TransferServiceImpl implements TransferService {
         affilliateAccountRepository.save(origin);
         affilliateAccountRepository.save(destiny);
         Transfer newTransfer = new Transfer(null, origin, destiny, value, LocalDateTime.now(), TransactionType.REVERSAL, transfer.get());
-        transferRepository.save(newTransfer);
+        return transferRepository.save(newTransfer);
     }
 
     @Override
