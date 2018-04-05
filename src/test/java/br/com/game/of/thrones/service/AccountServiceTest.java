@@ -48,7 +48,7 @@ public class AccountServiceTest {
         List<Account> accounts = accountService.findAll();
         Assertions.assertNotNull(accounts);
         Integer initialSize = accounts.size();
-        accountService.delete(accounts.get(0).getId());
+        accountService.delete(accounts.get(initialSize -1).getId());
         accounts = accountService.findAll();
         Assertions.assertTrue(accounts.size() < initialSize);
     }
