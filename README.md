@@ -12,6 +12,6 @@ A aplicação irá iniciar em http://localhost:8080
 
 ### Com a aplicação rodando!
 
-- Você pode acessar a documentação [aqui](http://localhost:8080/swagger-ui.html)
-- Caso queira o json para importar os endpoints no Postman [aqui](http://localhost:8080/v2/api-docs)
+- Você pode acessar a documentação em http://localhost:8080/swagger-ui.html
+- Caso queira o json para importar os endpoints no Postman http://localhost:8080/v2/api-docs
 
