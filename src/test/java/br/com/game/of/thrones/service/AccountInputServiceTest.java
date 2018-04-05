@@ -49,10 +49,19 @@ public class AccountInputServiceTest {
     public void reversalTest() {
         AccountInput accountInput = accountInputService.findAll().get(0);
         Account account = accountInput.getAccount();
-        accountInputService.reversal(accountInput.getId());
+        accountInputService.reversal(accountInput.getCode());
         Account accountAfterReversal = accountService.read(account.getId());
         Assertions.assertNotNull(accountAfterReversal);
         Assertions.assertTrue(accountAfterReversal.getBalance().compareTo(account.getBalance().subtract(accountInput.getValue())) == 0);
+    }
+
+    @Test
+    public void findByCodeTest() {
+        Account account = createAccount();
+        AccountInput accountInput = new AccountInput(null, account, "GJKMNO", LocalDateTime.now(), new BigDecimal(50), TransactionType.DEPOSIT, null);
+        accountInputService.deposit(accountInput);
+        AccountInput accountInputNew = accountInputService.findByCode(accountInput.getCode());
+        Assertions.assertNotNull(accountInputNew);
     }
 
 }

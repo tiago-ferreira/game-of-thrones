@@ -24,6 +24,7 @@ public class TransferController {
     }
 
     @GetMapping("/reversal/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     @Transactional
     public void reversal(@PathVariable("id") Long id) {
         transferService.reversal(id);

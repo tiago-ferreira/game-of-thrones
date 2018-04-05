@@ -8,7 +8,9 @@ public interface AccountInputService {
 
     AccountInput deposit(AccountInput accountInput);
 
-    AccountInput reversal(Long idAccountInput);
+    AccountInput reversal(String code);
+
+    AccountInput findByCode(String code);
 
     AccountInput read(Long id);
 

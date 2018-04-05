@@ -41,13 +41,19 @@ public class AccountInputServiceImpl implements AccountInputService {
     }
 
     @Override
-    public AccountInput reversal(Long idAccountInput) {
-        AccountInput accountInput = read(idAccountInput);
+    public AccountInput reversal(String code) {
+        AccountInput accountInput = findByCode(code);
         Account account = accountService.read(accountInput.getAccount().getId());
         account.setBalance(calc.subtract(account.getBalance(), accountInput.getValue()));
         accountService.update(account);
         AccountInput newAccountInput = new AccountInput(null, account, accountInput.getCode(), LocalDateTime.now(), accountInput.getValue(), TransactionType.REVERSAL, accountInput);
         return accountInputRepository.save(newAccountInput);
+    }
+
+    @Override
+    public AccountInput findByCode(String code) {
+        return accountInputRepository.findByCode(code)
+                .orElseThrow( () -> new ResourceNotFoundException("AccountInput", "code", code));
     }
 
     @Override

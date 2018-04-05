@@ -23,10 +23,11 @@ public class AccountInputController {
         accountInputService.deposit(transfer);
     }
 
-    @GetMapping("/reversal/{id}")
+    @GetMapping("/reversal/{code}")
+    @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    public void reversal(@PathVariable("id") Long id) {
-        accountInputService.reversal(id);
+    public void reversal(@PathVariable("code") String code) {
+        accountInputService.reversal(code);
     }
 
     @GetMapping("/{id}")
