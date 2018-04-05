@@ -6,7 +6,7 @@ Entrar no diretório do projeto:
 - mvn spring-boot:run
 
 
-A aplicação irá iniciar em http://localhost:8080
+A aplicação irá iniciar [aqui](http://localhost:8080)
 
 ## Documentação
 
