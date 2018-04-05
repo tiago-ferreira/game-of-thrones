@@ -1,6 +1,8 @@
 package br.com.game.of.thrones.model;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -21,6 +23,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(exclude = "affilliateAccounts")
 @ToString(exclude = "affilliateAccounts")
+@ApiModel(description = "All Details about Account")
 public class Account {
 
     @Id
@@ -30,6 +33,7 @@ public class Account {
     @NotBlank(message = "Name cannot be only whitespace")
     @NotEmpty(message = "Name cannot be Null or Empty")
     @Size(min = 3, message = "Name must be have atleast 3 characteres")
+    @ApiModelProperty(notes = "Name cannot be Null, Empty, only whitespaces and must be have atleast 3 characteres.")
     private String name;
     private LocalDateTime createdDate;
 
